@@ -212,14 +212,64 @@ document.addEventListener('DOMContentLoaded', () => {
     const eventsContainer = document.getElementById('eventsGrid');
     if (!eventsContainer || !config.events) return;
 
+    // SVG Icon Lễ Vu Quy (Nhẫn cưới uyên ương & kim cương tình yêu)
+    const vuQuyIconSvg = `
+      <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 6L23 11H15L19 6Z" fill="url(#eventGold)" />
+        <path d="M15 11L19 17L23 11H15Z" fill="url(#eventGold)" opacity="0.85" />
+        <path d="M19 1L19.8 4L22 4.8L19.8 5.6L19 8L18.2 5.6L16 4.8L18.2 4L19 1Z" fill="#DFBA73" />
+        <path d="M37 14L37.6 16.2L40 16.8L37.6 17.4L37 20L36.4 17.4L34 16.8L36.4 16.2L37 14Z" fill="#DFBA73" />
+        <circle cx="19" cy="27" r="12" stroke="url(#eventGold)" stroke-width="3.5" />
+        <circle cx="29" cy="27" r="12" stroke="url(#eventGold)" stroke-width="3.5" />
+        <path d="M24 25.5C22.8 24 21 24.5 21 26C21 27.6 24 30 24 30C24 30 27 27.6 27 26C27 24.5 25.2 24 24 25.5Z" fill="url(#eventGold)" />
+        <defs>
+          <linearGradient id="eventGold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#DFBA73" />
+            <stop offset="50%" stop-color="#C5A059" />
+            <stop offset="100%" stop-color="#9A7633" />
+          </linearGradient>
+        </defs>
+      </svg>
+    `;
+
+    // SVG Icon Lễ Tân Hôn (Cặp ly rượu champagne giao bôi & trái tim sủi bọt)
+    const tanHonIconSvg = `
+      <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 10L19 22C19 25 17 27 14 27H13C10 27 8 25 8 22L11 10H16Z" stroke="url(#eventGold2)" stroke-width="2.8" stroke-linejoin="round" />
+        <line x1="13.5" y1="27" x2="13.5" y2="39" stroke="url(#eventGold2)" stroke-width="2.8" stroke-linecap="round" />
+        <line x1="9" y1="39" x2="18" y2="39" stroke="url(#eventGold2)" stroke-width="2.8" stroke-linecap="round" />
+        <path d="M32 10L29 22C29 25 31 27 34 27H35C38 27 40 25 40 22L37 10H32Z" stroke="url(#eventGold2)" stroke-width="2.8" stroke-linejoin="round" />
+        <line x1="34.5" y1="27" x2="34.5" y2="39" stroke="url(#eventGold2)" stroke-width="2.8" stroke-linecap="round" />
+        <line x1="30" y1="39" x2="39" y2="39" stroke="url(#eventGold2)" stroke-width="2.8" stroke-linecap="round" />
+        <path d="M24 13C22.8 11.4 21 11.8 21 13.2C21 14.6 24 17 24 17C24 17 27 14.6 27 13.2C27 11.8 25.2 11.4 24 13Z" fill="url(#eventGold2)" />
+        <circle cx="24" cy="7" r="2.2" fill="url(#eventGold2)" />
+        <circle cx="20.5" cy="19" r="1.5" fill="url(#eventGold2)" />
+        <circle cx="27.5" cy="19" r="1.5" fill="url(#eventGold2)" />
+        <defs>
+          <linearGradient id="eventGold2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#DFBA73" />
+            <stop offset="50%" stop-color="#C5A059" />
+            <stop offset="100%" stop-color="#9A7633" />
+          </linearGradient>
+        </defs>
+      </svg>
+    `;
+
     eventsContainer.innerHTML = '';
     config.events.forEach(event => {
       const card = document.createElement('div');
       card.className = 'event-card';
-      const fullEventUrl = config.getImageUrl ? config.getImageUrl(event.image) : event.image;
-      const thumbEventUrl = config.getThumbnailUrl ? config.getThumbnailUrl(event.image, 600, 80) : fullEventUrl;
+      const isVuQuy = event.id === 'ceremony' || (event.title && event.title.toLowerCase().includes('vu quy'));
+      const iconSvg = isVuQuy ? vuQuyIconSvg : tanHonIconSvg;
+      const tagText = event.tag || (isVuQuy ? 'Nhà Gái' : 'Nhà Trai');
+
       card.innerHTML = `
-        <img class="event-card-image" src="${thumbEventUrl}" alt="${event.title}" loading="lazy" decoding="async" onerror="if(this.dataset.fallback!=='1'){this.dataset.fallback='1';this.src='${fullEventUrl}';}" />
+        <div class="event-card-header">
+          <div class="event-icon-badge" title="${event.title}">
+            ${iconSvg}
+          </div>
+          <span class="event-tag">${tagText}</span>
+        </div>
         <div class="event-card-body">
           <h3 class="event-title">${event.title}</h3>
           <div class="event-time">

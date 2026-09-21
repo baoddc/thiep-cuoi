@@ -85,20 +85,20 @@ window.WEDDING_CONFIG = {
     {
       id: "ceremony",
       title: "Lễ Vu Quy",
+      tag: "Nhà Gái",
       time: "09:00 - 29.09.2026",
       locationName: "Nhà Cô Dâu",
       address: "Ấp Tân Long, xã Phụng Hiệp, TP.Cần Thơ",
-      mapUrl: "https://maps.app.goo.gl/QAoknFvUVFvgncYX6",
-      image: "img/TUAB6153.JPG"
+      mapUrl: "https://maps.app.goo.gl/QAoknFvUVFvgncYX6"
     },
     {
       id: "reception",
       title: "Lễ Tân Hôn",
+      tag: "Nhà Trai",
       time: "10:00 - 29.09.2026",
       locationName: "Nhà Trai",
       address: "Ấp Tân Long A, xã Tân Bình, TP.Cần Thơ",
-      mapUrl: "https://maps.app.goo.gl/Nr7htkVxctRabPBE6",
-      image: "img/TUAB6748.JPG"
+      mapUrl: "https://maps.app.goo.gl/Nr7htkVxctRabPBE6"
     }
   ],
 
