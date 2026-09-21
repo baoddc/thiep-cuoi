@@ -152,18 +152,6 @@ window.WEDDING_CONFIG = {
       relation: "Nhà Trai",
       message: "Chúc hai cháu trăm năm tình viên mãn, bạc đầu nghĩa phu thê! Luôn yêu thương và sẻ chia mọi niềm vui trong cuộc sống!",
       time: "Vừa xong"
-    },
-    {
-      name: "Minh Trang (Bạn thân cô dâu)",
-      relation: "Nhà Gái",
-      message: "Cuối cùng ngày này cũng tới! Chúc Bảo Trân xinh đẹp của tao mãi hạnh phúc bên anh Thái Bảo, sớm có thiên thần nhỏ nha!",
-      time: "10 phút trước"
-    },
-    {
-      name: "Tuấn Anh & Nhóm bạn",
-      relation: "Nhà Trai",
-      message: "Chúc mừng người anh em Thái Bảo đã chính thức rước nàng về dinh! Chúc hai bạn hạnh phúc viên mãn trăm năm!",
-      time: "30 phút trước"
     }
   ],
 
