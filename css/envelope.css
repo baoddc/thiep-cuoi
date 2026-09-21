@@ -1,0 +1,252 @@
+/* ====================================================================
+   INTERACTIVE WAX-SEALED ENVELOPE & CANVAS PETALS STYLING
+   ==================================================================== */
+
+/* Fullscreen Overlay */
+.envelope-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, #2C2622 0%, #151210 100%);
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.2s;
+}
+
+.envelope-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* 3D Perspective Container */
+.envelope-perspective {
+  perspective: 1200px;
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* The Envelope Container */
+.envelope-box {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  height: 250px;
+  background: #EFE7DA;
+  border-radius: 6px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(197, 160, 89, 0.4);
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.envelope-box:hover {
+  transform: translateY(-4px);
+}
+
+/* Inside Letter Card (Thiệp lồng bên trong) */
+.envelope-letter {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  right: 15px;
+  height: 230px;
+  background: #FCFAF7;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  border-radius: 4px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.envelope-letter-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  color: #C5A059;
+  line-height: 1.2;
+}
+
+.envelope-letter-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #2D2621;
+  margin: 0.5rem 0;
+}
+
+.envelope-letter-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #9A7633;
+}
+
+/* Flaps */
+.envelope-flap-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 190px 135px 190px;
+  border-color: transparent transparent #E6DC melt #E6DCD0;
+  border-color: transparent transparent #E2D7C8 transparent;
+  z-index: 4;
+}
+
+.envelope-flap-left {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  border-style: solid;
+  border-width: 125px 0 125px 190px;
+  border-color: transparent transparent transparent #DDD2C3;
+  z-index: 3;
+}
+
+.envelope-flap-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  border-style: solid;
+  border-width: 125px 190px 125px 0;
+  border-color: transparent #D8CCBD transparent transparent;
+  z-index: 3;
+}
+
+/* Top Flap with 3D Flip */
+.envelope-flap-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 140px 190px 0 190px;
+  border-color: #EFE7DA transparent transparent transparent;
+  transform-origin: top center;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.2s 0.3s;
+  z-index: 5;
+}
+
+/* Wax Seal (Con Dấu Sáp Vàng) */
+.wax-seal {
+  position: absolute;
+  top: 130px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #F4D38B 0%, #C5A059 55%, #8B6524 100%);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: sealPulse 2.5s infinite ease-in-out;
+}
+
+.wax-seal:hover {
+  transform: translateX(-50%) translateY(-50%) scale(1.08);
+  box-shadow: 0 8px 25px rgba(197, 160, 89, 0.6);
+}
+
+.wax-seal-inner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.5rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes sealPulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 0 0 rgba(197, 160, 89, 0.4);
+  }
+  50% {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 0 14px rgba(197, 160, 89, 0);
+  }
+}
+
+/* Prompt Text */
+.envelope-prompt {
+  margin-top: 2.5rem;
+  color: #E8D7B5;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: promptFade 2s infinite ease-in-out;
+}
+
+@keyframes promptFade {
+  0%, 100% { opacity: 0.7; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* OPENED STATE ANIMATIONS */
+.envelope-box.opened .envelope-flap-top {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope-box.opened .wax-seal {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.envelope-box.opened .envelope-letter {
+  transform: translateY(-160px);
+  z-index: 5;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Falling Canvas Petals */
+#petalsCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998;
+  will-change: transform;
+  transform: translateZ(0);
+}

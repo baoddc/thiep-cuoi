@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+  <!-- Primary Meta Tags -->
+  <title>Thiệp Cưới Thái Bão & Bảo Trân | Save The Date</title>
+  <meta name="title" content="Thiệp Cưới Thái Bảo & Bảo Trân | Save The Date" />
+  <meta name="description"
+    content="Trân trọng kính mời quý khách đến chung vui cùng gia đình chúng tôi trong ngày trọng đại của Lê Thái Bảo & Bảo Trân." />
+
+  <!-- Open Graph / Facebook / Zalo -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Thiệp Cưới Thái Bảo & Bảo Trân | Save The Date" />
+  <meta property="og:description"
+    content="Trân trọng kính mời quý khách đến chung vui cùng gia đình chúng tôi trong ngày trọng đại của Lê Thái Bảo & Bảo Trân." />
+  <meta property="og:image" content="https://pub-bf77e033a1fd47f6a82d4b3b70dd90db.r2.dev/TUAB6234.JPG" />
+
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>" />
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/envelope.css" />
+</head>
+
+<body>
+
+  <!-- Falling Canvas Petals (Cánh hoa rơi) -->
+  <canvas id="petalsCanvas"></canvas>
+
+  <!-- ====================================================================
+       INTERACTIVE WAX-SEALED ENVELOPE (BÌA THIỆP MỜI 3D TƯƠNG TÁC)
+       ==================================================================== -->
+  <div class="envelope-overlay" id="envelopeOverlay">
+    <div class="envelope-perspective">
+      <div class="envelope-box" id="envelopeBox" title="Chạm để mở thiệp">
+        <!-- Letter card sliding up -->
+        <div class="envelope-letter">
+          <span class="envelope-letter-title">Wedding Invitation</span>
+          <div class="envelope-letter-subtitle">Lễ Cưới</div>
+          <div class="envelope-letter-names" id="envelopeNames">Thái Bảo & Bảo Trân</div>
+          <div id="envelopeDate" style="font-size: 0.85rem; color: #7A7269; margin-top: 0.5rem;">29 . 09 . 2026</div>
+        </div>
+
+        <!-- Flaps -->
+        <div class="envelope-flap-top"></div>
+        <div class="envelope-flap-left"></div>
+        <div class="envelope-flap-right"></div>
+        <div class="envelope-flap-bottom"></div>
+
+        <!-- Wax Seal -->
+        <div class="wax-seal" id="waxSeal" title="Mở thiệp">
+          <div class="wax-seal-inner" id="waxSealMonogram">B&T</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Click prompt -->
+    <div class="envelope-prompt" id="openEnvelopeBtn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M19 12l-7 7-7-7" />
+      </svg>
+      <span>Chạm vào phong bì để mở thiệp</span>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M19 12l-7 7-7-7" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MAIN WEBSITE CONTENT (NỘI DUNG CHÍNH CỦA THIỆP CƯỚI)
+       ==================================================================== -->
+  <main>
+    <!-- 1. HERO BANNER -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-save-date">SAVE THE DATE</div>
+        <h1 class="hero-names" id="heroNames">
+          <span id="heroGroom">Thái Bảo</span>
+          <span class="ampersand">&</span>
+          <span id="heroBride">Bảo Trân</span>
+        </h1>
+        <div class="hero-date" id="heroDate">29 . 09 . 2026</div>
+
+        <div class="hero-image-wrapper">
+          <div class="hero-image-frame">
+            <img id="heroImage" src="img/TUAB6234.JPG" alt="Ảnh cưới Thái Bảo & Bảo Trân" fetchpriority="high" decoding="async" />
+          </div>
+          <div class="hero-image-border"></div>
+        </div>
+
+        <p class="hero-quote">
+          “Tình yêu không phải là nhìn nhau, mà là cùng nhau nhìn về một hướng.”
+        </p>
+
+        <div class="section-divider">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. COUNTDOWN TIMER -->
+    <section class="countdown-section" id="countdown">
+      <div class="container">
+        <div class="section-header" style="margin-bottom: 1.5rem;">
+          <span class="section-subtitle">Cùng đếm ngược</span>
+          <h2 class="section-title">Ngày Trọng Đại</h2>
+          <p id="countdownSubtitle" style="font-size: 0.95rem; color: #7C7268; margin-top: 0.5rem;">
+            Thứ Ba, ngày 29 tháng 9 năm 2026 (Tức ngày 19 tháng 8 năm Bính Ngọ)
+          </p>
+        </div>
+
+        <div class="countdown-wrapper">
+          <div class="countdown-box">
+            <div class="countdown-number" id="countdownDays">00</div>
+            <div class="countdown-label">Ngày</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-number" id="countdownHours">00</div>
+            <div class="countdown-label">Giờ</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-number" id="countdownMinutes">00</div>
+            <div class="countdown-label">Phút</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-number" id="countdownSeconds">00</div>
+            <div class="countdown-label">Giây</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. COUPLE PROFILES -->
+    <section class="section couple-section" id="couple">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Đôi Uyên Ương</span>
+          <h2 class="section-title">Cô Dâu & Chú Rể</h2>
+          <div class="section-divider">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="couple-grid">
+          <!-- Chú Rể -->
+          <div class="couple-card">
+            <div class="couple-avatar-wrapper">
+              <div class="couple-avatar-frame">
+                <img id="groomAvatar" src="img/TUAB6748.JPG" alt="Chú Rể Lê Thái Bảo" loading="lazy" decoding="async" />
+              </div>
+              <div class="couple-avatar-border"></div>
+            </div>
+            <div class="couple-role">Chú Rể</div>
+            <h3 class="couple-name" id="groomName">Lê Thái Bảo</h3>
+            <div class="couple-parents" id="groomParents">
+              <div>Cha: <strong>Lê Văn Lực</strong></div>
+              <div>Mẹ: <strong>Phạm Thị Khen</strong></div>
+              <div style="font-size: 0.85rem; color: #8C8276; margin-top: 0.25rem;">Ấp Tân Long A, xã Tân Bình, TP.Cần
+                Thơ</div>
+            </div>
+            <p class="couple-bio" id="groomBio">
+              “Là một chàng trai đam mê công nghệ và yêu sự chân thành. Hạnh phúc lớn nhất của anh là tìm thấy một nửa
+              dịu dàng, luôn đồng hành và sẻ chia mọi khoảnh khắc trong cuộc sống.”
+            </p>
+          </div>
+
+          <!-- Heart Icon Divider -->
+          <div class="couple-heart">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          </div>
+
+          <!-- Cô Dâu -->
+          <div class="couple-card">
+            <div class="couple-avatar-wrapper">
+              <div class="couple-avatar-frame">
+                <img id="brideAvatar" src="img/TUAB6045.JPG" alt="Cô Dâu Trần Thị Bảo Trân" loading="lazy" decoding="async" />
+              </div>
+              <div class="couple-avatar-border"></div>
+            </div>
+            <div class="couple-role">Cô Dâu</div>
+            <h3 class="couple-name" id="brideName">Trần Thị Bảo Trân</h3>
+            <div class="couple-parents" id="brideParents">
+              <div>Cha: <strong>Trần Văn Chẳng</strong></div>
+              <div>Mẹ: <strong>Đặng Thị Loan</strong></div>
+              <div style="font-size: 0.85rem; color: #8C8276; margin-top: 0.25rem;">Ấp Tân Long, xã Phụng Hiệp, TP.Cần
+                Thơ</div>
+            </div>
+            <p class="couple-bio" id="brideBio">
+              “Một cô gái thich làm bánh, thích những giai điệu ngọt ngào và những chuyến đi. Cảm ơn anh đã đến, nắm lấy
+              tay em
+              và cùng em viết nên một câu chuyện tình yêu trọn vẹn nhất.”
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 5. EVENTS & SCHEDULE -->
+    <section class="section events-section" id="events">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Thời Gian & Địa Điểm</span>
+          <h2 class="section-title">Lịch Trình Tiệc Cưới</h2>
+          <div class="section-divider">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="events-grid" id="eventsGrid">
+          <!-- Dynamically populated by main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PHOTO GALLERY & LIGHTBOX -->
+    <section class="section gallery-section" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Khoảnh Khắc Kỷ Niệm</span>
+          <h2 class="section-title">Album Ảnh Cưới</h2>
+          <div class="section-divider">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Filter buttons -->
+        <div class="gallery-filters">
+          <button class="filter-btn active" data-filter="all">Tất Cả (32 Ảnh)</button>
+          <button class="filter-btn" data-filter="romantic">Khoảnh Khắc Ngọt Ngào</button>
+          <button class="filter-btn" data-filter="modern">Váy Cưới & Vest</button>
+          <button class="filter-btn" data-filter="traditional">Lễ Phục Truyền Thống</button>
+        </div>
+
+        <!-- 32 Images Grid -->
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- Dynamically populated by gallery.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+      <button class="lightbox-btn lightbox-close" id="lightboxClose" title="Đóng (Esc)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <button class="lightbox-btn lightbox-prev" id="lightboxPrev" title="Ảnh trước (Mũi tên trái)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <button class="lightbox-btn lightbox-next" id="lightboxNext" title="Ảnh sau (Mũi tên phải)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="lightbox-content">
+        <img id="lightboxImg" src="" alt="Ảnh cưới toàn màn hình" decoding="async" />
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+        <div class="lightbox-counter" id="lightboxCounter"></div>
+      </div>
+    </div>
+
+    <!-- 7. RSVP & GUESTBOOK -->
+    <section class="section rsvp-section" id="rsvp">
+      <div class="container container-narrow">
+        <div class="section-header">
+          <span class="section-subtitle">Gửi Lời Chúc Phúc</span>
+          <h2 class="section-title">Sổ Lưu Bút & Xác Nhận</h2>
+          <div class="section-divider">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="rsvp-card">
+          <form id="rsvpForm">
+            <div class="form-group">
+              <label class="form-label" for="guestName">Họ và Tên của bạn *</label>
+              <input type="text" id="guestName" class="form-control" placeholder="Ví dụ: Nguyễn Văn A" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="guestPhone">Số điện thoại</label>
+              <input type="tel" id="guestPhone" class="form-control" placeholder="Để cô dâu chú rể tiện liên hệ" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Bạn là khách của ai?</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="guestSide" value="Nhà Trai" checked />
+                  <span id="rsvpGroomSideText">Nhà Trai (Lê Thái Bảo)</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="guestSide" value="Nhà Gái" />
+                  <span id="rsvpBrideSideText">Nhà Gái (Bảo Trân)</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="guestSide" value="Bạn Chung" />
+                  Bạn chung hai người
+                </label>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="form-label" for="guestMessage">Lời chúc mừng của bạn *</label>
+              <textarea id="guestMessage" class="form-control" rows="4"
+                placeholder="Gửi những lời chúc tốt đẹp nhất đến đôi uyên ương..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              Gửi Lời Chúc Phúc
+            </button>
+          </form>
+
+          <!-- Wishes Wall -->
+          <div class="wishes-wall">
+            <h3 class="wishes-title">Sổ Lưu Bút Mừng Cưới</h3>
+            <div class="wishes-list" id="wishesList">
+              <!-- Dynamically populated by main.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-names" id="footerNames">Lê Thái Bảo & Bảo Trân</div>
+      <div class="footer-thankyou">Cảm ơn bạn đã luôn yêu thương và đồng hành cùng chúng mình!</div>
+      <div class="footer-credit" id="footerCredit">
+        Save The Date • 29.09.2026 • Forever in Love
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING VINYL MUSIC PLAYER -->
+  <div class="music-player-btn" id="musicToggle" title="Phát / Tạm dừng nhạc">
+    <div class="vinyl-disc">
+      <div class="vinyl-center"></div>
+    </div>
+  </div>
+
+  <!-- Audio Element -->
+  <audio id="weddingAudio" loop preload="auto">
+    <source src="audio/wedding-song.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Toast Notification -->
+  <div class="toast-notification" id="toastNotification"></div>
+
+  <!-- Firebase SDK (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+  <!-- JavaScript Modules -->
+  <script src="js/config.js"></script>
+  <script src="js/petals.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

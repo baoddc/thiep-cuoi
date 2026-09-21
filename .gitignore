@@ -1,0 +1,13 @@
+# Secrets and Config
+scripts/r2_config.json
+.env
+*.env
+
+# Dependencies
+node_modules/
+.npm/
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
