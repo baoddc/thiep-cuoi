@@ -85,6 +85,21 @@
       audioElement = document.getElementById('weddingAudio');
       musicBtn = document.getElementById('musicToggle');
 
+      if (audioElement) {
+        const config = window.WEDDING_CONFIG;
+        const targetSrc = (config && config.music && config.music.src) 
+          ? config.music.src 
+          : "Shane%20Filan%20-%20Beautiful%20In%20White.mp3";
+
+        if (!audioElement.getAttribute('src')) {
+          audioElement.setAttribute('src', targetSrc);
+        }
+        audioElement.volume = 0.75;
+
+        audioElement.addEventListener('play', () => updateUI(true));
+        audioElement.addEventListener('pause', () => updateUI(false));
+      }
+
       if (musicBtn) {
         musicBtn.addEventListener('click', () => {
           this.toggle();
@@ -95,15 +110,28 @@
     play: function() {
       if (isPlaying) return;
 
-      if (audioElement && audioElement.src && !audioElement.error) {
+      if (audioElement) {
+        const config = window.WEDDING_CONFIG;
+        const targetSrc = (config && config.music && config.music.src) 
+          ? config.music.src 
+          : "Shane%20Filan%20-%20Beautiful%20In%20White.mp3";
+
+        if (!audioElement.getAttribute('src')) {
+          audioElement.setAttribute('src', targetSrc);
+        }
+
         const playPromise = audioElement.play();
         if (playPromise !== undefined) {
           playPromise.then(() => {
+            stopSynthMelody();
             updateUI(true);
           }).catch(err => {
-            console.log("Audio file autoplay blocked or failed, starting romantic synth melody:", err);
-            startSynthMelody();
-            updateUI(true);
+            console.warn("Autoplay blocked or waiting for user interaction:", err);
+            // Chỉ fallback synth nếu file audio hoàn toàn không thể tải
+            if (audioElement.error) {
+              startSynthMelody();
+            }
+            updateUI(false);
           });
         }
       } else {

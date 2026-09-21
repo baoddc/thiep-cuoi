@@ -133,14 +133,20 @@
     }
   };
 
-  // Burst effect when envelope is opened
+  // Burst effect when envelope is opened (Bung hoa từ vị trí con dấu sáp)
   window.burstPetals = function() {
-    for (let i = 0; i < 20; i++) {
+    if (!canvas) return;
+    const originX = canvas.width / 2;
+    const originY = canvas.height * 0.42;
+    for (let i = 0; i < 28; i++) {
       const extraPetal = new Petal();
-      extraPetal.x = canvas.width / 2 + (Math.random() - 0.5) * 200;
-      extraPetal.y = canvas.height / 2 + (Math.random() - 0.5) * 150;
-      extraPetal.speedY = Math.random() * -3 - 2; // Fly upward first
-      extraPetal.speedX = (Math.random() - 0.5) * 6;
+      extraPetal.x = originX + (Math.random() - 0.5) * 60;
+      extraPetal.y = originY + (Math.random() - 0.5) * 40;
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 5 + 3;
+      extraPetal.speedX = Math.cos(angle) * speed;
+      extraPetal.speedY = Math.sin(angle) * speed - 4; // Bay vút lên trên
+      extraPetal.spin = (Math.random() - 0.5) * 0.08;
       petals.push(extraPetal);
     }
   };

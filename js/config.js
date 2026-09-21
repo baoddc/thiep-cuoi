@@ -165,5 +165,11 @@ window.WEDDING_CONFIG = {
     messagingSenderId: "351507006783",
     appId: "1:351507006783:web:b29e97f55b9ee3309bbf8a",
     measurementId: "G-NYF9L2T86T"
+  },
+
+  // 10. BÀI HÁT NHẠC NỀN (BACKGROUND MUSIC)
+  music: {
+    src: "Shane%20Filan%20-%20Beautiful%20In%20White.mp3",
+    title: "Shane Filan - Beautiful In White"
   }
 };

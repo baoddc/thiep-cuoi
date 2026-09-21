@@ -38,23 +38,40 @@
   <div class="envelope-overlay" id="envelopeOverlay">
     <div class="envelope-perspective">
       <div class="envelope-box" id="envelopeBox" title="Chạm để mở thiệp">
-        <!-- Letter card sliding up -->
-        <div class="envelope-letter">
-          <span class="envelope-letter-title">Wedding Invitation</span>
-          <div class="envelope-letter-subtitle">Lễ Cưới</div>
-          <div class="envelope-letter-names" id="envelopeNames">Thái Bảo & Bảo Trân</div>
-          <div id="envelopeDate" style="font-size: 0.85rem; color: #7A7269; margin-top: 0.5rem;">29 . 09 . 2026</div>
+        <!-- Pocket Interior Lining (Lớp lót bên trong hốc phong bì) -->
+        <div class="envelope-inner-pocket"></div>
+
+        <!-- Letter card sliding up (Thiệp mời trượt lên) -->
+        <div class="envelope-letter" id="envelopeLetter">
+          <div class="letter-shimmer"></div>
+          <div class="envelope-letter-border">
+            <span class="envelope-letter-title">Wedding Invitation</span>
+            <div class="envelope-letter-subtitle">Lễ Cưới</div>
+            <div class="envelope-letter-names" id="envelopeNames">Thái Bảo & Bảo Trân</div>
+            <div id="envelopeDate" class="envelope-letter-date">29 . 09 . 2026</div>
+            <div class="envelope-letter-decor">❦</div>
+          </div>
         </div>
 
-        <!-- Flaps -->
-        <div class="envelope-flap-top"></div>
+        <!-- Top Flap (Nắp phong bì 3D xoay từ từ lên trên) -->
+        <svg class="envelope-flap-top" id="envelopeFlapTop" viewBox="0 0 380 140" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="flapGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#F2EAE0" />
+              <stop offset="100%" stop-color="#DFD1BD" />
+            </linearGradient>
+          </defs>
+          <polygon points="0,0 380,0 190,140" fill="url(#flapGrad)" />
+        </svg>
+
         <div class="envelope-flap-left"></div>
         <div class="envelope-flap-right"></div>
         <div class="envelope-flap-bottom"></div>
 
-        <!-- Wax Seal -->
+        <!-- Wax Seal (Con dấu sáp hoàng gia) -->
         <div class="wax-seal" id="waxSeal" title="Mở thiệp">
           <div class="wax-seal-inner" id="waxSealMonogram">B&T</div>
+          <div class="wax-seal-shine"></div>
         </div>
       </div>
     </div>
@@ -379,7 +396,9 @@
   </div>
 
   <!-- Audio Element -->
-  <audio id="weddingAudio" loop preload="auto">
+  <audio id="weddingAudio" loop preload="auto" src="Shane%20Filan%20-%20Beautiful%20In%20White.mp3">
+    <source src="Shane%20Filan%20-%20Beautiful%20In%20White.mp3" type="audio/mpeg" />
+    <source src="audio/Shane%20Filan%20-%20Beautiful%20In%20White.mp3" type="audio/mpeg" />
     <source src="audio/wedding-song.mp3" type="audio/mpeg" />
   </audio>
 

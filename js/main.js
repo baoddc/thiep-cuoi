@@ -33,9 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const waxSealMonogram = document.getElementById('waxSealMonogram');
-    if (waxSealMonogram && config.groom && config.bride) {
-      waxSealMonogram.textContent = "B&T";
-    }
+    const waxSealMonogram2 = document.getElementById('waxSealMonogram2');
+    const monogram = "B&T";
+    if (waxSealMonogram) waxSealMonogram.textContent = monogram;
+    if (waxSealMonogram2) waxSealMonogram2.textContent = monogram;
 
     // Hero Section
     const heroGroom = document.getElementById('heroGroom');
@@ -140,35 +141,93 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.WeddingMusic) window.WeddingMusic.init();
   if (window.WeddingGallery) window.WeddingGallery.init();
 
-  // 2. XỬ LÝ MỞ PHONG BÌ (ENVELOPE INTERACTION)
+  // 2. XỬ LÝ MỞ PHONG BÌ (ENVELOPE INTERACTION - CINEMATIC 3D)
   const envelopeOverlay = document.getElementById('envelopeOverlay');
   const envelopeBox = document.getElementById('envelopeBox');
   const waxSeal = document.getElementById('waxSeal');
   const openEnvelopeBtn = document.getElementById('openEnvelopeBtn');
+  let isEnvelopeOpening = false;
 
   function triggerOpenEnvelope() {
-    if (!envelopeBox || envelopeBox.classList.contains('opened')) return;
+    if (!envelopeBox || isEnvelopeOpening) return;
+    isEnvelopeOpening = true;
 
-    envelopeBox.classList.add('opened');
+    // Giai đoạn 1 (0ms): Nhấn vào - Con dấu sáp và chữ nhắc mờ dần, bung cánh hoa và cất nhạc cưới
+    envelopeBox.classList.add('stage-seal');
+    if (envelopeOverlay) envelopeOverlay.classList.add('opening');
+    if (openEnvelopeBtn) {
+      openEnvelopeBtn.style.opacity = '0';
+      openEnvelopeBtn.style.pointerEvents = 'none';
+    }
 
-    // Nổ cánh hoa rực rỡ
+    // Nổ cánh hoa rực rỡ từ vị trí con dấu
     if (window.burstPetals) window.burstPetals();
 
     // Phát nhạc cưới du dương
     if (window.WeddingMusic) window.WeddingMusic.play();
 
-    // Ẩn lớp phủ phong bì sau 1.6s để hiển thị trang web chính
+    // Giai đoạn 2 (180ms): Nắp thiệp từ từ quay từ dưới lên mở ra trong 1.2 giây
+    setTimeout(() => {
+      envelopeBox.classList.add('stage-flap');
+    }, 180);
+
+    // Giai đoạn 3 (1450ms): Nắp đã mở xong hoàn toàn -> Thiệp từ từ hướng lên trong 1.8 giây, vạt trước bao thư vẫn che chắn phần đáy
+    setTimeout(() => {
+      envelopeBox.classList.add('stage-letter');
+    }, 1450);
+
+    // Giai đoạn 4 (3350ms): Thiệp đã nhô lên hoàn chỉnh, dừng lại ngắm nhìn trang trọng
+    setTimeout(() => {
+      envelopeBox.classList.add('stage-appreciate');
+      envelopeBox.classList.add('opened');
+    }, 3350);
+
+    // Giai đoạn 5 (4800ms): Hiệu ứng điện ảnh - phóng nhẹ và hòa mờ êm dịu dẫn vào trang chính
+    setTimeout(() => {
+      if (envelopeOverlay) {
+        envelopeOverlay.classList.add('stage-dissolve');
+      }
+    }, 4800);
+
+    // Giai đoạn 6 (5650ms): Hoàn tất chuyển cảnh, mở cuộn cho website
     setTimeout(() => {
       if (envelopeOverlay) {
         envelopeOverlay.classList.add('hidden');
         document.body.style.overflow = '';
       }
-    }, 1600);
+    }, 5650);
   }
 
-  if (waxSeal) waxSeal.addEventListener('click', triggerOpenEnvelope);
-  if (openEnvelopeBtn) openEnvelopeBtn.addEventListener('click', triggerOpenEnvelope);
-  if (envelopeBox) envelopeBox.addEventListener('click', triggerOpenEnvelope);
+  // Bấm vào phong bì: nếu đang ở giai đoạn ngắm thiệp thì chuyển nhanh vào trang chính
+  if (envelopeBox) {
+    envelopeBox.addEventListener('click', () => {
+      if (envelopeBox.classList.contains('stage-appreciate')) {
+        if (envelopeOverlay && !envelopeOverlay.classList.contains('hidden')) {
+          envelopeOverlay.classList.add('stage-dissolve');
+          setTimeout(() => {
+            envelopeOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+          }, 450);
+        }
+      } else {
+        triggerOpenEnvelope();
+      }
+    });
+  }
+
+  if (waxSeal) {
+    waxSeal.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerOpenEnvelope();
+    });
+  }
+
+  if (openEnvelopeBtn) {
+    openEnvelopeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerOpenEnvelope();
+    });
+  }
 
   // 3. ĐỒNG HỒ ĐẾM NGƯỢC (COUNTDOWN TIMER)
   function initCountdown() {
